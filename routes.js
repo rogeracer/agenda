@@ -3,6 +3,7 @@ const route = express.Router();
 const homeController = require("./src/controllers/homeController");
 const loginController = require("./src/controllers/loginController");
 const contatoController = require("./src/controllers/contatoController");
+const {loginRequired} = require("./src/middlewares/middleware");
 
 // Rotas de Home
 
@@ -17,7 +18,8 @@ route.get("/login/logout", loginController.logout);
 
 // Rotas de Contato
 
-route.get("/contato/index", contatoController.index);
+route.get("/contato/index",loginRequired, contatoController.index);
+route.post("/contato/register", loginRequired, contatoController.register);
 
 module.exports = route;
 
