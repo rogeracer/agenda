@@ -5,7 +5,11 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 
-mongoose.connect(process.env.CONNECTIONSTRING, { useNewUrlParser: true,useUnifiedTopology: true })
+mongoose.connect(process.env.CONNECTIONSTRING, { 
+	useNewUrlParser: true,
+	useUnifiedTopology: true, 
+	useFindAndModify:false
+})
 	.then(()=>{
 		console.log("conectou agora...");
 		app.emit("pronto")
